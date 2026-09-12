@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #123B70;
+  --secondary: #2F80ED;
+  --accent: #37C99A;
+  --bg-main: #F5F8FC;
+  --surface: #FFFFFF;
+  --text-main: #10233F;
+  --text-muted: #64748B;
+  --border-main: #E2E8F0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+/* Custom Soft UI elevation effects */
+.soft-card {
+  background: #FFFFFF;
+  box-shadow: 0 12px 30px rgba(18, 59, 112, 0.07), 0 2px 6px rgba(18, 59, 112, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.soft-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(18, 59, 112, 0.12), 0 4px 10px rgba(18, 59, 112, 0.04);
+  border-color: rgba(47, 128, 237, 0.3);
+}
+
+.soft-surface {
+  background: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(18, 59, 112, 0.05);
+  border: 1px solid #E2E8F0;
+}
+
+/* Hero arch destination mask */
+.arch-clip {
+  border-radius: 40px 140px 40px 40px;
+}
+
+@keyframes progress {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 4.5s ease-in-out 1.5s infinite;
+}
+
+/* Loader */
+.loader {
+  display: inline-flex;
+  gap: 5px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  width: 25px;
+  aspect-ratio: 1;
+  box-shadow: 0 0 0 3px inset #123B70;
+  animation: l4 1.5s infinite;
+}
+.loader:after {
+  --s: -1;
+  animation-delay: 0.75s;
+}
+@keyframes l4 {
+  0%     {transform:scaleX(var(--s,1)) translate(0) rotate(0)}
+  16.67% {transform:scaleX(var(--s,1)) translate(-50%) rotate(0)}
+  33.33% {transform:scaleX(var(--s,1)) translate(-50%) rotate(90deg)}
+  50%,
+  100%   {transform:scaleX(var(--s,1)) translate(0) rotate(90deg)}
+}
+
+/* ── Infinite Marquee Slider (Testimonials) ── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar for horizontal service scroll on mobile */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
