@@ -20,7 +20,7 @@ export default function HeroSection() {
       */}
       <div className="absolute inset-0 w-full h-full -z-10 select-none overflow-hidden">
         <Image
-          src="/images/snow-mountains-3840x2160-25476.jpg"
+          src="/images/hero-bg.jpg"
           alt="Majestic Mountain Landscape Background"
           fill
           priority
