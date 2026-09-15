@@ -104,26 +104,26 @@ export default function Footer() {
             <ul className="space-y-3 text-xs text-slate-400">
               <li>
                 <a
-                  href="https://maps.google.com/?q=Tecfin+Tower+Sector+74+Mohali"
+                  href="https://maps.google.com/?q=D+264-265+Phase+8B+Industrial+Area+Sector+74+Sahibzada+Ajit+Singh+Nagar+Punjab+140307"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-2.5 hover:text-white transition-colors group"
                   title="Open in Google Maps"
                 >
                   <MapPin className="w-4 h-4 text-tng-secondary shrink-0 mt-0.5 group-hover:text-tng-accent transition-colors" />
-                  <span>Floor 1, Tecfin Tower, Sector 74, Mohali, Punjab</span>
+                  <span>D 264-265, Phase 8B, Industrial Area,<br />Sector 74, SAS Nagar, Punjab 140307</span>
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-tng-secondary shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-white transition-colors">
-                  +91 (0) 800-TNG-GROW
+                <a href="tel:+919991906186" className="hover:text-white transition-colors">
+                  +91 9991906186
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-tng-secondary shrink-0" />
-                <a href="mailto:advisory@tnggrowth.com" className="hover:text-white transition-colors">
-                  advisory@tnggrowth.com
+                <a href="mailto:thenewgrowth159@gmail.com" className="hover:text-white transition-colors">
+                  thenewgrowth159@gmail.com
                 </a>
               </li>
             </ul>

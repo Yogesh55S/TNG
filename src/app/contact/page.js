@@ -15,14 +15,32 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
 
   return (
@@ -37,7 +55,7 @@ export default function ContactPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-          {/* Contact Details & Hours (Left 5 Cols) — Clean, No White Box Border */}
+          {/* Contact Details & Hours (Left 5 Cols) */}
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-tng-text tracking-tight">
@@ -47,7 +65,7 @@ export default function ContactPage() {
               <div className="space-y-5 text-sm text-slate-700">
                 {/* Address with Google Maps */}
                 <a
-                  href="https://maps.google.com/?q=Tecfin+Tower+Sector+74+Mohali"
+                  href="https://maps.google.com/?q=D+264-265+Phase+8B+Industrial+Area+Sector+74+Sahibzada+Ajit+Singh+Nagar+Punjab+140307"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-3.5 group"
@@ -58,11 +76,16 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <strong className="text-tng-primary font-bold flex items-center gap-1">
-                      <span>Headquarters & Advisory Suite</span>
+                      <span>Headquarters &amp; Advisory Suite</span>
                       <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </strong>
-                    <span className="text-slate-600 block mt-0.5">Floor 1, Tecfin Tower, Sector 74, Mohali, Punjab</span>
-                    <span className="text-xs text-tng-secondary font-semibold mt-1 inline-block">Click to view on Google Maps →</span>
+                    <span className="text-slate-600 block mt-0.5">
+                      D 264-265, Phase 8B, Industrial Area, Sector 74,<br />
+                      Sahibzada Ajit Singh Nagar, Punjab 140307
+                    </span>
+                    <span className="text-xs text-tng-secondary font-semibold mt-1 inline-block">
+                      Click to view on Google Maps →
+                    </span>
                   </div>
                 </a>
 
@@ -73,8 +96,11 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <strong className="text-tng-primary block font-bold">Direct Helpline</strong>
-                    <a href="tel:+919876543210" className="text-slate-600 hover:text-tng-primary transition-colors block mt-0.5">
-                      +91 (0) 800-TNG-GROW
+                    <a
+                      href="tel:+919991906186"
+                      className="text-slate-600 hover:text-tng-primary transition-colors block mt-0.5"
+                    >
+                      +91 9991906186
                     </a>
                   </div>
                 </div>
@@ -86,8 +112,11 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <strong className="text-tng-primary block font-bold">Email Inquiries</strong>
-                    <a href="mailto:advisory@tnggrowth.com" className="text-slate-600 hover:text-tng-primary transition-colors block mt-0.5">
-                      advisory@tnggrowth.com
+                    <a
+                      href="mailto:thenewgrowth159@gmail.com"
+                      className="text-slate-600 hover:text-tng-primary transition-colors block mt-0.5"
+                    >
+                      thenewgrowth159@gmail.com
                     </a>
                   </div>
                 </div>
@@ -99,14 +128,16 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <strong className="text-tng-primary block font-bold">Visiting Hours</strong>
-                    <span className="text-slate-600 block mt-0.5">Monday – Saturday: 9:30 AM – 6:30 PM (Closed Sundays)</span>
+                    <span className="text-slate-600 block mt-0.5">
+                      Monday – Saturday: 9:30 AM – 6:30 PM (Closed Sundays)
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Google Maps Location Interactive Card */}
               <a
-                href="https://maps.google.com/?q=Tecfin+Tower+Sector+74+Mohali"
+                href="https://maps.google.com/?q=D+264-265+Phase+8B+Industrial+Area+Sector+74+Sahibzada+Ajit+Singh+Nagar+Punjab+140307"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative aspect-[16/9] w-full rounded-3xl bg-slate-100 overflow-hidden flex flex-col items-center justify-center p-6 text-center shadow-soft-sm group block transition-transform duration-300 hover:scale-[1.01]"
@@ -114,13 +145,20 @@ export default function ContactPage() {
                 <div className="w-12 h-12 rounded-2xl bg-white shadow-soft text-tng-primary flex items-center justify-center mb-2 group-hover:bg-tng-primary group-hover:text-white transition-all duration-300">
                   <MapPin className="w-6 h-6" />
                 </div>
-                <span className="text-sm font-bold text-tng-text">Tecfin Tower, Sector 74, Mohali</span>
-                <span className="text-xs text-tng-secondary font-semibold mt-1">Open Interactive Google Maps ↗</span>
+                <span className="text-sm font-bold text-tng-text">
+                  Phase 8B, Sector 74, Mohali, Punjab
+                </span>
+                <span className="text-xs text-slate-500 mt-0.5">
+                  D 264-265, Industrial Area
+                </span>
+                <span className="text-xs text-tng-secondary font-semibold mt-1">
+                  Open Interactive Google Maps ↗
+                </span>
               </a>
             </div>
           </div>
 
-          {/* Contact Message Form (Right 7 Cols) — Clean, No Harsh Box Borders */}
+          {/* Contact Message Form (Right 7 Cols) */}
           <div className="lg:col-span-7">
             <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-soft">
               {submitted ? (
@@ -132,7 +170,8 @@ export default function ContactPage() {
                     Message Dispatched
                   </h3>
                   <p className="text-sm text-tng-muted max-w-md mx-auto">
-                    Thanks, {formData.name}! Your message has been received. A counseling specialist from our Mohali center will respond within 24 business hours.
+                    Thanks, {formData.name}! Your message has been received. A counseling specialist
+                    will respond within 24 business hours at {formData.email}.
                   </p>
                   <Button
                     onClick={() => {
@@ -150,6 +189,13 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-bold text-tng-text mb-4">
                     Send Us an Inquiry
                   </h3>
+
+                  {/* Error message */}
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-2xl px-4 py-3">
+                      {error}
+                    </div>
+                  )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>

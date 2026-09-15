@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
 import Button from "@/components/ui/Button";
-import { CheckCircle2, Send, Calendar, Clock, User, Mail, Phone, Globe, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Send, Calendar, User, Mail, Phone, Globe, ShieldCheck } from "lucide-react";
 
 export default function ConsultationModal({ isOpen, onClose, defaultOpportunity = null }) {
   const [formData, setFormData] = useState({
@@ -18,18 +18,37 @@ export default function ConsultationModal({ isOpen, onClose, defaultOpportunity 
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError("");
+
+    try {
+      const res = await fetch("/api/consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 800);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setError("");
     onClose();
   };
 
@@ -54,7 +73,9 @@ export default function ConsultationModal({ isOpen, onClose, defaultOpportunity 
               Thank you, {formData.name || "Explorer"}!
             </h4>
             <p className="text-sm text-tng-muted max-w-md mx-auto leading-relaxed">
-              Your consultation request for <strong className="text-tng-primary">{formData.country}</strong> has been logged in this demo. A senior TNG advisor will review your preferences and get in touch via email and phone.
+              Your consultation request for{" "}
+              <strong className="text-tng-primary">{formData.country}</strong> has been submitted.
+              A senior TNG advisor will review your preferences and get in touch via email and phone.
             </p>
           </div>
 
@@ -72,6 +93,13 @@ export default function ConsultationModal({ isOpen, onClose, defaultOpportunity 
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Error message */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3">
+              {error}
+            </div>
+          )}
+
           <div>
             <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
               Full Name *
