@@ -1,0 +1,72 @@
+/* Admin panel. Avoids the header, nav, section and footer tags, which the public CSS styles globally. */
+.adm-login{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:20px}
+.adm-login-card{width:min(400px,100%);background:#fff;border-radius:var(--r);padding:32px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.adm-login-card img{height:64px;width:auto;margin:0 auto 18px}
+.adm-login-card h1{font-size:1.3rem;text-align:center;margin-bottom:20px}
+.adm-login-card .row{margin-bottom:14px}
+.adm-shell{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100vh;background:var(--bg);padding-bottom:0}
+.adm-side{background:var(--navy);color:#fff;padding:20px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.adm-brand{font:800 1.05rem Montserrat,sans-serif;padding:6px 12px 16px}
+.adm-brand small{display:block;font:600 .75rem Inter,sans-serif;color:var(--orange);margin-top:2px}
+.adm-link{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border-radius:6px;color:#dbe5f2;font-weight:600;font-size:.93rem;min-height:44px;white-space:nowrap}
+.adm-link:hover{background:rgba(255,255,255,.1);color:#fff}
+.adm-link.on{background:#fff;color:var(--navy)}
+.adm-count{background:var(--orange);color:var(--navy);border-radius:20px;padding:0 8px;font-size:.78rem;font-weight:800}
+.adm-side-end{margin-top:auto;display:flex;flex-direction:column;gap:4px;padding-top:16px}
+.adm-side-end button{width:100%;background:none;border:none;cursor:pointer;font-family:inherit;text-align:left}
+.adm-main{padding:28px;min-width:0}
+.adm-title{font-size:1.6rem;margin-bottom:6px}
+.adm-sub{color:var(--muted);margin-bottom:20px}
+.adm-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow);margin-bottom:16px}
+.adm-card h2{font-size:1.1rem;margin-bottom:14px}
+.adm-card .row:last-of-type{margin-bottom:18px}
+.adm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.adm-stat{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow)}
+.adm-stat:hover{border-color:var(--orange)}
+.adm-stat strong{display:block;font:800 1.9rem/1.1 Montserrat,sans-serif;color:var(--navy)}
+.adm-stat span{color:var(--muted);font-size:.9rem}
+.adm-note{padding:12px 16px;border-radius:6px;margin-bottom:16px;font-weight:600}
+.adm-note.ok{background:#e9f7ef;border:1px solid #9bd3b0;color:#1d6b40}
+.adm-note.bad{background:#fdecea;border:1px solid #f1b0a9;color:#a1261b}
+.adm-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.adm-table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.adm-table{width:100%;border-collapse:collapse;font-size:.93rem}
+.adm-table th{text-align:left;color:var(--muted);font-weight:600;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+.adm-table td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.adm-table tr:last-child td{border-bottom:none}
+.adm-table a.name{color:var(--navy);font-weight:700;text-decoration:underline}
+.adm-badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.78rem;font-weight:700;background:var(--bg);color:var(--navy);white-space:nowrap}
+.adm-badge.new,.adm-badge.pending{background:#fff4e0;color:#7f5800}
+.adm-badge.booked,.adm-badge.approved,.adm-badge.completed{background:#e9f7ef;color:#1d6b40}
+.adm-badge.rejected{background:#fdecea;color:#a1261b}
+.adm-detail{display:grid;grid-template-columns:170px minmax(0,1fr);gap:8px 16px}
+.adm-detail dt{color:var(--muted);font-size:.9rem}
+.adm-detail dd{white-space:pre-wrap;overflow-wrap:anywhere}
+.adm-photos{display:flex;flex-wrap:wrap;gap:10px}
+.adm-photos img{width:130px;height:130px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.adm-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.adm-actions form{margin:0}
+.adm-inline{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.adm-inline select{width:auto;min-width:160px}
+.btn-sm{min-height:42px;padding:0 16px;font-size:.9rem}
+.btn-ok{background:#1d6b40;color:#fff}.btn-ok:hover{background:#155230}
+.btn-bad{background:#fff;color:#a1261b;border-color:#f1b0a9}.btn-bad:hover{background:#fdecea}
+.adm-img{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.adm-img img{width:200px;height:130px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.adm-img-empty{width:200px;height:130px;display:flex;align-items:center;justify-content:center;border-radius:6px;border:1px dashed #cdd5e0;color:var(--muted);font-size:.85rem;text-align:center;padding:8px}
+.adm-review-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.adm-empty{padding:32px;text-align:center;color:var(--muted)}
+.adm-list-link{display:flex;justify-content:space-between;gap:12px;align-items:center}
+@media(max-width:860px){
+.adm-shell{grid-template-columns:minmax(0,1fr)}
+.adm-side{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:10px;align-items:center}
+.adm-brand{display:none}
+.adm-side-end{flex-direction:row;margin:0 0 0 auto;padding:0}
+.adm-side-end button{width:auto}
+.adm-main{padding:18px 14px}
+.adm-stats{grid-template-columns:1fr 1fr}
+.adm-detail{grid-template-columns:minmax(0,1fr);gap:2px}
+.adm-detail dd{margin-bottom:10px}
+.adm-card{padding:18px}
+}
+@media(max-width:860px){.adm-shell{grid-template-rows:auto 1fr}}

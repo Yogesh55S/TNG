@@ -1,13 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
+  experimental: {
+    serverComponentsExternalPackages: ['pg'],
+    serverActions: { bodySizeLimit: '6mb' }, // Admin image uploads
   },
   // Keep compiled pages in memory during development so chunks never expire / throw 404
   onDemandEntries: {
